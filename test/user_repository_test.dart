@@ -7,12 +7,12 @@ import 'package:mocktail/mocktail.dart';
 class MockHttpClient extends Mock implements Client {}
 
 void main() {
-  late UserRepository userRepository;
+  late UserRepository sut; // sut = system under test
   late MockHttpClient mockHttpClient;
   setUp(() {
     // use Mocktail to mock the http client as it is the simplest way to mock
     mockHttpClient = MockHttpClient();
-    userRepository = UserRepository(mockHttpClient);
+    sut = UserRepository(mockHttpClient);
   });
 
   group("UserRepository - ", () {
@@ -37,7 +37,7 @@ void main() {
 
         // Act
         // here we are expecting a user to be returned, then we must await the call
-        final user = await userRepository.getUser();
+        final user = await sut.getUser();
         // Assert
         expect(user, isA<User>());
       });
@@ -52,7 +52,7 @@ void main() {
 
         // Act
         // here we are expecting an exception to be thrown, then we must not await the call
-        final user = userRepository.getUser();
+        final user = sut.getUser();
         // Assert
         expect(user, throwsA(isA<Exception>()));
       });
