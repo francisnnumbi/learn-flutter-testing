@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: ProfileUi(
-        userRepository: UserRepository(Client()),
+        futureUser: UserRepository(Client()).getUser(),
       ),
     );
   }
