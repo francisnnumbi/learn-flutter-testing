@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:learn_flutter_testing/app/ui/profile_ui.dart';
+
+import 'app/repositories/user_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +19,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ProfileUi(),
+      home: ProfileUi(
+        userRepository: UserRepository(Client()),
+      ),
     );
   }
 }

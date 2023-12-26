@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:learn_flutter_testing/app/repositories/user_repository.dart';
-
-import '../models/user_model.dart';
 
 class ProfileUi extends StatefulWidget {
   const ProfileUi({
     super.key,
+    required this.userRepository,
   });
+
+  final UserRepository userRepository;
 
   @override
   State<ProfileUi> createState() => _ProfileUiState();
 }
 
 class _ProfileUiState extends State<ProfileUi> {
-  Future<User> getUsers = UserRepository(Client()).getUser();
+  //Future<User> getUser = UserRepository(Client()).getUser();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _ProfileUiState extends State<ProfileUi> {
             Text("Profile", style: Theme.of(context).textTheme.headlineMedium),
       ),
       body: FutureBuilder(
-          future: getUsers,
+          future: widget.userRepository.getUser(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
