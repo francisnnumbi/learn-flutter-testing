@@ -51,6 +51,7 @@ class _CounterUiState extends State<CounterUi> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            key: const Key('counterUi_increment_floatingActionButton'),
             onPressed: _incrementCounter,
             tooltip: 'Increment',
             backgroundColor: Colors.green.shade300,
@@ -58,6 +59,7 @@ class _CounterUiState extends State<CounterUi> {
           ),
           const SizedBox(height: 8),
           FloatingActionButton(
+            key: const Key('counterUi_decrement_floatingActionButton'),
             onPressed: _decrementCounter,
             tooltip: 'Decrement',
             backgroundColor: Colors.red.shade300,
